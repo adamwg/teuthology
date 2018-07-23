@@ -6,6 +6,7 @@ import logging
 import os
 import random
 import time
+from distutils.util import strtobool
 
 import teuthology
 from ..config import config, YamlConfig
@@ -48,6 +49,8 @@ def process_args(args):
                 value = []
             else:
                 value = [x.strip() for x in value.split(',')]
+        elif key == 'validate_sha1':
+            value = strtobool(value)
         conf[key] = value
     return conf
 
